@@ -2,5 +2,6 @@
 
 std::shared_ptr<Core> Core::initialize()
 {
-	return std::shared_ptr<Core>();
+	std::shared_ptr<Core> core = std::make_shared<Core>(Core::Core());
+	return core;
 }

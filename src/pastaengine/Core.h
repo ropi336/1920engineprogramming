@@ -11,6 +11,7 @@ private:
 	std::shared_ptr<Keyboard> keybird;
 	std::list<std::shared_ptr<Entity>> entities;
 	std::shared_ptr<Environment> environment;
+	Core();
 
 public:
 
