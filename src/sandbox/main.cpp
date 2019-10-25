@@ -1,6 +1,6 @@
 #include <iostream>
 
 int main(){
-  std::cout << "pasta engine" << std::endl;
+  std::cout << "This is an example of an application that runs on the Pasta Engine" << std::endl;
   return 0;
 };
