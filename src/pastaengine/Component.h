@@ -1,3 +1,6 @@
+#ifndef pastaComponent
+#define pastaComponent
+
 #include <memory>
 
 class Entity;
@@ -8,11 +11,13 @@ class Resources;
 
 class Component {
 private:
+	friend class Entity;
+	friend class Core;
 	std::weak_ptr<Entity> entity;
-	void onInit(); 
-	void onBegin(); 
-	void onTick();
-	void onDisplay();
+	virtual void onInit(); 
+	virtual void onBegin(); 
+	virtual void onTick();
+	virtual void onDisplay();
 public:
 	std::shared_ptr<Entity> getEntity();
 	std::shared_ptr<Core> getCore();
@@ -20,3 +25,4 @@ public:
 	std::shared_ptr<Environment> getEnvironment();
 	std::shared_ptr<Resources> getResources();
 };
+#endif // !pastaComponent

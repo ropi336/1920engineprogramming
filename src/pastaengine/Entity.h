@@ -1,13 +1,16 @@
 #include <vector>
 #include <memory>
+#include <list>
 
 class Component;
 class Core;
 
 class Entity {
 private:
-	std::vector<std::shared_ptr<Component>> components;
+	friend class Core;
+	std::list<std::shared_ptr<Component>> components;
 	std::weak_ptr<Core> core;
+	std::weak_ptr<Entity> self;
 
 	void tick();
 	void display();
@@ -18,7 +21,10 @@ public:
 	std::shared_ptr<T> addComponent()
 	{
 		std::shared_ptr<T> comp = std::make_shared<T>();
-		m_components.push_back(comp);
+		comp->entity = self;
+		std::shared_ptr<Component> baseComp = comp;
+		baseComp->onInit();
+		components.push_back(comp);
 		return comp;
 	};
 
@@ -26,7 +32,10 @@ public:
 	std::shared_ptr<T> addComponent(A _a)
 	{
 		std::shared_ptr<T> comp = std::make_shared<T>(_a);
-		m_components.push_back(comp);
+		comp->entity = self;
+		std::shared_ptr<Component> baseComp = comp;
+		baseComp->onInit();
+		components.push_back(comp);
 		return comp;
 	};
 
@@ -34,7 +43,10 @@ public:
 	std::shared_ptr<T> addComponent(A _a, B _b)
 	{
 		std::shared_ptr<T> comp = std::make_shared<T>(_a, _b);
-		m_components.push_back(comp);
+		comp->entity = self;
+		std::shared_ptr<Component> baseComp = comp;
+		baseComp->onInit();
+		components.push_back(comp);
 		return comp;
 	};
 
@@ -42,7 +54,10 @@ public:
 	std::shared_ptr<T> addComponent(A _a, B _b, C _c)
 	{
 		std::shared_ptr<T> comp = std::make_shared<T>(_a, _b, _c);
-		m_components.push_back(comp);
+		comp->entity = self;
+		std::shared_ptr<Component> baseComp = comp;
+		baseComp->onInit();
+		components.push_back(comp);
 		return comp;
 	};
 

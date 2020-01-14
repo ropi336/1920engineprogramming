@@ -1,6 +1,13 @@
 #include <iostream>
+#include "tempComponent.h"
 
-int main(){
-  std::cout << "This is an example of an application that runs on the Pasta Engine" << std::endl;
+int main()
+{
+	std::shared_ptr<Core> defaultCore = Core::initialize();
+	std::shared_ptr<Entity> defaultEntity = defaultCore->addEntity();
+	std::shared_ptr<TempComponent> defaultComponent = defaultEntity->addComponent<TempComponent>();
+
+	defaultCore->start();
+	
   return 0;
 };

@@ -1,2 +1,7 @@
+#include "Component.h"
 #include "Core.h"
-#include <memory>
+#include "Entity.h"
+#include "Environment.h"
+#include "Keyboard.h"
+#include "Screen.h"
+#include <rend/rend.h>

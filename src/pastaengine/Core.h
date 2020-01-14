@@ -13,9 +13,9 @@ private:
 	std::list<std::shared_ptr<Entity>> entities;
 	std::shared_ptr<Environment> environment;
 	std::shared_ptr<Resources> resources;
-	Core();
 
 public:
+	Core();
 
 	static std::shared_ptr<Core> initialize();
 	void start();
