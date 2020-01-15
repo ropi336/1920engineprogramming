@@ -3,5 +3,5 @@
 
 void TempComponent::onTick()
 {
-	std::cout << "WORKING\n";
+	std::cout << "we groovin\n";
 }

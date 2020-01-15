@@ -9,7 +9,8 @@ class Keyboard;
 class Environment;
 class Resources;
 
-class Component {
+class Component
+{
 private:
 	friend class Entity;
 	friend class Core;

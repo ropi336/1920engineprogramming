@@ -13,13 +13,18 @@ add_library(pastaengine
  src/pastaengine/Environment.cpp
  src/pastaengine/Entity.cpp
  src/pastaengine/Screen.cpp
+ src/pastaengine/TriangleRenderer.cpp
+ src/pastaengine/3dRenderer.cpp
  src/pastaengine/Core.h
  src/pastaengine/pasta.h
  src/pastaengine/Component.h
  src/pastaengine/Keyboard.h
  src/pastaengine/Environment.h
  src/pastaengine/Entity.h
- src/pastaengine/Screen.h)
+ src/pastaengine/Screen.h
+ src/pastaengine/TriangleRenderer.h
+ src/pastaengine/3dRenderer.h
+ src/pastaengine/stb_image.h)
 
 add_library(rend
 src/rend/Exception.cpp
