@@ -48,6 +48,8 @@ const char* src =
 "#endif                                        \n";
 
 
+
+
 void Renderer::onDisplay()
 {
 	angle += 3.0f;
@@ -58,7 +60,7 @@ void Renderer::onDisplay()
 	shader->setUniform("u_Projection", perspective(radians(65.0f), 1.0f, 0.1f, 100.0f));
 
 	shader->setUniform("u_Model",
-		translate(glm::mat4(1.0f), vec3(0, 1.5, -10)) *
+		translate(glm::mat4(1.0f), modelPos) *
 		rotate(glm::mat4(1.0f), radians(angle), vec3(0, 1, 0))
 	);
 
@@ -66,7 +68,10 @@ void Renderer::onDisplay()
 	shader->render();
 }
 
-
+void Renderer::getPos(vec3 modPos)
+{
+	modelPos = modPos;
+}
 
 void Renderer::loadModel(std::string  modlPath)
 {
@@ -128,8 +133,6 @@ void Renderer::loadTexture(char const * texrPath)
 		stbi_image_free(data);
 		shape->setTexture("u_Texture", texture);
 }
-
-
 
 
 

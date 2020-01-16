@@ -12,6 +12,7 @@ private:
 	std::weak_ptr<Core> core;
 	std::weak_ptr<Entity> self;
 
+
 	void tick();
 	void display();
 public:
@@ -20,6 +21,7 @@ public:
 	template <class T> 
 	std::shared_ptr<T> addComponent()
 	{
+	
 		std::shared_ptr<T> comp = std::make_shared<T>();
 		comp->entity = self;
 		std::shared_ptr<Component> baseComp = comp;

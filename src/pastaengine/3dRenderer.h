@@ -13,11 +13,12 @@ public:
 
 	void loadModel(std::string modlPath);
 	void loadTexture(char const * texrPath);
+	void getPos(glm::vec3 modPos);
 private:
 	
 	std::string modelPath;
 	char const * texturePath;
-	
+	glm::vec3 modelPos;
 
 
 	std::sr1::shared_ptr<Context> context;
