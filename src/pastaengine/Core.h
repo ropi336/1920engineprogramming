@@ -1,5 +1,4 @@
 #include <memory>
-#include "stb_image.h"
 #include <list>
 #include "GL/glew.h"
 #include <SDL2/SDL.h>

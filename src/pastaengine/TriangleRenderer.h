@@ -1,4 +1,3 @@
-#include "stb_image.h"
 #include <GL/glew.h>
 #include <SDL2/SDL.h>
 #include "Component.h"
