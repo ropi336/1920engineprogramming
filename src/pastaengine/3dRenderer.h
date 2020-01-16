@@ -10,7 +10,16 @@ class  Renderer : public Component
 {
 public: 
 	void onDisplay();
+
+	void loadModel(std::string modlPath);
+	void loadTexture(char const * texrPath);
 private:
+	
+	std::string modelPath;
+	char const * texturePath;
+	
+
+
 	std::sr1::shared_ptr<Context> context;
 
 	std::sr1::shared_ptr<Shader> shader;

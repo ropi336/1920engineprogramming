@@ -50,34 +50,34 @@ const char* src =
 
 void Renderer::onDisplay()
 {
-		angle += 3.0f;
+	angle += 3.0f;
 
-		glClearColor(0.10f, 0.15f, 0.25f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glClearColor(0.10f, 0.15f, 0.25f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		shader->setUniform("u_Projection", perspective(radians(65.0f), 1.0f, 0.1f, 100.0f));
+	shader->setUniform("u_Projection", perspective(radians(65.0f), 1.0f, 0.1f, 100.0f));
 
-		shader->setUniform("u_Model",
-			translate(glm::mat4(1.0f), vec3(0, 0, -10)) *
-			rotate(glm::mat4(1.0f), radians(angle), vec3(0, 1, 0))
-		);
+	shader->setUniform("u_Model",
+		translate(glm::mat4(1.0f), vec3(0, 1.5, -10)) *
+		rotate(glm::mat4(1.0f), radians(angle), vec3(0, 1, 0))
+	);
 
-		shader->setMesh(shape);
-		shader->render();
+	shader->setMesh(shape);
+	shader->render();
 }
-// LoadObject(string)  <- 
-// LoadTexture(string)
-void Renderer::onInit()
-{
 
+
+
+void Renderer::loadModel(std::string  modlPath)
+{
+	modelPath = modlPath;
 	context = Context::initialize();
 	shader = context->createShader();
 	shader->parse(src);
 
 	shape = context->createMesh();
-	{
 
-		std::ifstream f("../share/curuthers/curuthers.obj");
+		std::ifstream f(modlPath);
 
 		if (!f.is_open())
 		{
@@ -94,15 +94,16 @@ void Renderer::onInit()
 		}
 
 		shape->parse(obj);
+}
 
-	}
+void Renderer::loadTexture(char const * texrPath)
+{
+	texturePath = texrPath;
 	texture = context->createTexture();
-	{
 		int w = 0;
 		int h = 0;
 		int bpp = 0;
-
-		unsigned char *data = stbi_load("../share/curuthers/curuthers.png",
+		unsigned char *data = stbi_load(texrPath,
 			&w, &h, &bpp, 3);
 
 		if (!data)
@@ -124,11 +125,14 @@ void Renderer::onInit()
 					data[r + 2] / 255.0f));
 			}
 		}
-
 		stbi_image_free(data);
-
-
 		shape->setTexture("u_Texture", texture);
+}
 
-	}
+
+
+
+
+void Renderer::onInit()
+{
 }
