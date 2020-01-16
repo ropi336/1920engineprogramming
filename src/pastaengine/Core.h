@@ -1,7 +1,12 @@
 #include <memory>
 #include <list>
 #include "GL/glew.h"
+#include <rend/rend.h>
 #include <SDL2/SDL.h>
+#include <sr1/memory>
+
+using namespace rend;
+
 
 class Keyboard;
 class Entity;
@@ -16,10 +21,12 @@ private:
 	std::list<std::shared_ptr<Entity>> entities;
 	std::shared_ptr<Environment> environment;
 	std::shared_ptr<Resources> resources;
-
+	std::sr1::shared_ptr<Context> context;
+	std::weak_ptr<Core> self;
 public:
+	 std::sr1::shared_ptr<Context> getContext();
 	Core();
-
+	~Core();
 	static std::shared_ptr<Core> initialize();
 	void start();
 	void stop();

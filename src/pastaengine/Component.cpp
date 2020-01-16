@@ -1,4 +1,5 @@
 #include "Component.h"
+#include "Entity.h"
 
 void Component::onInit()
 {
@@ -23,7 +24,7 @@ std::shared_ptr<Entity> Component::getEntity()
 
 std::shared_ptr<Core> Component::getCore()
 {
-	return std::shared_ptr<Core>();
+	return entity.lock()->getCore();
 }
 
 std::shared_ptr<Keyboard> Component::getKeyboard()

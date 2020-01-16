@@ -5,8 +5,19 @@
 #define WINDOW_WIDTH 640
 #define WINDOW_HEIGHT 480
 
+
+
 Core::Core()
 {
+}
+
+Core::~Core()
+{
+	context = NULL;
+	entities.clear();
+
+	SDL_DestroyWindow(window);
+	SDL_Quit();
 }
 
 std::shared_ptr<Core> Core::initialize()
@@ -31,9 +42,15 @@ std::shared_ptr<Core> Core::initialize()
 		throw std::exception();
 	}
 
+	core->context = Context::initialize();
 
-
+	core->self = core;
 	return core;
+}
+
+std::sr1::shared_ptr<Context> Core::getContext()
+{
+	return context;
 }
 
 void Core::start()
@@ -57,6 +74,9 @@ void Core::start()
 			(*it)->tick();
 
 		}
+
+		glClearColor(0.10f, 0.15f, 0.25f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		for (std::list<std::shared_ptr<Entity>>::iterator it = entities.begin(); it != entities.end(); it++)
 		{
 			(*it)->display();
@@ -66,8 +86,7 @@ void Core::start()
 
 	}
 
-	SDL_DestroyWindow(window);
-	SDL_Quit();
+	
 }
 
 void Core::stop()
@@ -79,6 +98,7 @@ std::shared_ptr<Entity> Core::addEntity()
 	//initialize 3D Entity before pushing to the list of entities
 	std::shared_ptr<Entity> tempEntity = std::make_shared<Entity>();
 	tempEntity->self = tempEntity;
+	tempEntity->core = self;
 	entities.push_back(tempEntity);
 	return tempEntity;
 }

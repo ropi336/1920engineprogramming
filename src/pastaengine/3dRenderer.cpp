@@ -54,8 +54,6 @@ void Renderer::onDisplay()
 {
 	angle += 3.0f;
 
-	glClearColor(0.10f, 0.15f, 0.25f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	shader->setUniform("u_Projection", perspective(radians(65.0f), 1.0f, 0.1f, 100.0f));
 
@@ -76,7 +74,7 @@ void Renderer::getPos(vec3 modPos)
 void Renderer::loadModel(std::string  modlPath)
 {
 	modelPath = modlPath;
-	context = Context::initialize();
+	context = getCore()->getContext();
 	shader = context->createShader();
 	shader->parse(src);
 
