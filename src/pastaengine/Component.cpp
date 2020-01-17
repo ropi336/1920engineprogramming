@@ -1,6 +1,12 @@
 #include "Component.h"
 #include "Entity.h"
 
+/**
+* These classes are empty due to the fact that the header file defines them to be
+* virtual classes, meaning they can be filled out by the rest of the software.
+*/
+
+
 void Component::onInit()
 {
 }
@@ -17,7 +23,11 @@ void Component::onDisplay()
 {
 }
 
-std::shared_ptr<Entity> Component::getEntity()
+/**
+* Fetching entity data
+*/
+
+std::shared_ptr<Entity> Component::getEntity() ///< Fetching an entity to load the components onto
 {
 	return std::shared_ptr<Entity>();
 }

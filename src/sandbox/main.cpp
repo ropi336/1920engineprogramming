@@ -5,11 +5,23 @@
 
 int main()
 {
-	std::shared_ptr<Core> defaultCore = Core::initialize();
+/**
+* Core - Stores data of essential entities and models, updates, renders them as required
+* Currently, it's done every single frame
+*/
+
+	std::shared_ptr<Core> defaultCore = Core::initialize(); ///< Initialized core
 
 	std::shared_ptr<Entity> squareEntity = defaultCore->addEntity();
 
-	std::shared_ptr<Renderer2D> renderer2D = squareEntity->addComponent<Renderer2D>();
+	std::shared_ptr<Renderer2D> renderer2D = squareEntity->addComponent<Renderer2D>(); ///< Attaching the 2D rendering component
+
+/**
+* The section below initializes an entity, then attaches an object instance renderer component to load
+* and display the model and texture, and also giving it a vec3 position
+* This section is repeated with different entities, models, textures, vec3 positions
+* In order to render several different models onto the screen.
+*/
 
 	std::shared_ptr<Entity> curuthers1 = defaultCore->addEntity();
 	std::shared_ptr<Renderer3D> curthersRend1 = curuthers1->addComponent<Renderer3D>();
@@ -34,8 +46,14 @@ int main()
 	curuthersRend4->loadModel("../share/curuthers/curuthers.obj");
 	curuthersRend4->loadTexture("../share/curuthers/curuthers4.png");
 	curuthersRend4->setPos(glm::vec3(0, -5, -20));
+
+	std::shared_ptr<Entity> curuthersBlack = defaultCore->addEntity();
+	std::shared_ptr<Renderer3D> curuthersRendBlack = curuthersBlack->addComponent<Renderer3D>();
+	curuthersRendBlack->loadModel("../share/curuthers/curuthers.obj");
+	curuthersRendBlack->loadTexture("../share/curuthers/curuthersblack.png");
+	curuthersRendBlack->setPos(glm::vec3(0, 10, -25));
 	
-	defaultCore->start();
+	defaultCore->start(); ///< Looping core update function
 	
   return 0;
 };

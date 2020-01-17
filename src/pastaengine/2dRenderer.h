@@ -5,6 +5,10 @@
 
 using namespace rend;
 
+/**
+* Stores vital data required for rendering and displaying the 2D plane
+*/
+
 class  Renderer2D : public Component
 {
 public: 

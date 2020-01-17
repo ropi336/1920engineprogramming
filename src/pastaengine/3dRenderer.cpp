@@ -126,7 +126,7 @@ void Renderer3D::loadTexture(char const * texrPath)
 	int w = 0; ///<  width
 	int h = 0; ///< height
 	int bpp = 0; 
-	unsigned char *data = stbi_load(texrPath,&w, &h, &bpp, 3);
+	unsigned char *data = stbi_load(texrPath,&w, &h, &bpp, 3); ///< Loading and parsing image data. File location, then width, then height
 
 	if (!data)
 	{
@@ -144,7 +144,7 @@ void Renderer3D::loadTexture(char const * texrPath)
 		{
 			int r = y * w * 3 + x * 3;
 
-			texture->setPixel(x, y, vec3(
+			texture->setPixel(x, y, vec3( ///< sets the colour of the pixel to prepare rendering of the diffuse
 				data[r] / 255.0f,
 				data[r + 1] / 255.0f,
 				data[r + 2] / 255.0f));

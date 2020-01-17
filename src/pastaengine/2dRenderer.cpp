@@ -55,11 +55,11 @@ void Renderer2D::onDisplay()
 
 void Renderer2D::onInit()
 {
-	context = getCore()->getContext(); 
-	shader = context->createShader();
-	shader->parse(src2D);
-	shape = context->createMesh();
-	shape->parse(obj);
-	shader->setUniform("u_Projection", perspective(radians(45.0f), 1.0f, 0.1f, 100.0f));
-	shader->setMesh(shape);
+	context = getCore()->getContext();  ///<  Preparing the context for the storage of 
+	shader = context->createShader(); ///< Storing the shader
+	shader->parse(src2D); ///< Parsing the vertex file defined at the top of the class 
+	shape = context->createMesh(); ///< storing the mesh 
+	shape->parse(obj); ///< parsing the vertex data to define the rectangle
+	shader->setUniform("u_Projection", perspective(radians(45.0f), 1.0f, 0.1f, 100.0f)); ///< creating a projection matrix to make the object viewable
+	shader->setMesh(shape); ///< rendering the shape
 }
