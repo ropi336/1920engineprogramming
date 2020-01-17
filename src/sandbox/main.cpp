@@ -54,6 +54,8 @@ int main()
 	curuthersRendBlack->setPos(glm::vec3(0, 10, -25));
 	
 	defaultCore->start(); ///< Looping core update function
+
+	///< final commit
 	
   return 0;
 };
