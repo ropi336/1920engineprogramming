@@ -6,20 +6,16 @@
 
 using namespace rend;
 
-class  Renderer : public Component
+class  Renderer3D : public Component
 {
 public: 
 	void onDisplay();
 
 	void loadModel(std::string modlPath);
 	void loadTexture(char const * texrPath);
-	void getPos(glm::vec3 modPos);
+	void setPos(glm::vec3 modPos);
 private:
-	
-	std::string modelPath;
-	char const * texturePath;
 	glm::vec3 modelPos;
-
 
 	std::sr1::shared_ptr<Context> context;
 

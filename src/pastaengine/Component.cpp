@@ -26,18 +26,3 @@ std::shared_ptr<Core> Component::getCore()
 {
 	return entity.lock()->getCore();
 }
-
-std::shared_ptr<Keyboard> Component::getKeyboard()
-{
-	return std::shared_ptr<Keyboard>();
-}
-
-std::shared_ptr<Environment> Component::getEnvironment()
-{
-	return std::shared_ptr<Environment>();
-}
-
-std::shared_ptr<Resources> Component::getResources()
-{
-	return std::shared_ptr<Resources>();
-}

@@ -3,14 +3,18 @@
 #include <sr1/memory>
 #include <SDL2/SDL.h>
 
+using namespace rend;
 
-
-class  Renderer : public Component
+class  Renderer2D : public Component
 {
 public: 
 	void onDisplay();
 
+
 private:
+	std::sr1::shared_ptr<Context> context; ///< Storing the required data for rendering
+	std::sr1::shared_ptr<Shader> shader; ///<  storing the shader data
+	std::sr1::shared_ptr<Mesh> shape; ///< storing the mesh data
 	void onInit();
 
 };

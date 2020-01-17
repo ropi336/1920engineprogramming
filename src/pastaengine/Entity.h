@@ -7,7 +7,7 @@ class Core;
 
 class Entity {
 private:
-	friend class Core;
+	friend class Core; ///< Gives the class Entity access to all of the private and protected members of the Core class
 	std::list<std::shared_ptr<Component>> components;
 	std::weak_ptr<Core> core;
 	std::weak_ptr<Entity> self;

@@ -1,10 +1,11 @@
-#include "3dRenderer.h"
+#include "2dRenderer.h"
 #include "Core.h"
 
+/**
+* The Vertex Data that provides the values for rendering the square in the correct position, size and colour
+*/
 
-using namespace rend;
-
-const char* src =
+const char* src2D =
 "#ifdef VERTEX                                 \n" \
 "                                              \n" \
 "attribute vec3 a_Position;                    \n" \
@@ -16,7 +17,7 @@ const char* src =
 "                                              \n" \
 "void main()                                   \n" \
 "{                                             \n" \
-"  vec3 pos = a_Position + vec3(0, 0, -5);     \n" \
+"  vec3 pos = a_Position + vec3(0, -3, -10);     \n" \
 "  gl_Position = u_Projection * vec4(pos, 1);  \n" \
 "  v_TexCoord = a_TexCoord;                    \n" \
 "}                                             \n" \
@@ -47,26 +48,18 @@ const char* obj =
 "f 1/1 2/2 3/3 4/4  \n" \
 "                   \n";
 
-void Renderer::onDisplay()
+void Renderer2D::onDisplay()
 {
-	std::sr1::shared_ptr<Context> context = Context::initialize();
-	std::sr1::shared_ptr<Shader> shader = context->createShader();
-	shader->parse(src);
-
-	std::sr1::shared_ptr<Mesh> shape = context->createMesh();
-	shape->parse(obj);
-
-	bool running = true;
-	SDL_Event e = { 0 };
-	glClearColor(0.39f, 0.58f, 0.93f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-	shader->setUniform("u_Projection", perspective(radians(45.0f), 1.0f, 0.1f, 100.0f));
-	shader->setMesh(shape);
 	shader->render();
 }
 
-void Renderer::onInit()
+void Renderer2D::onInit()
 {
-
+	context = getCore()->getContext(); 
+	shader = context->createShader();
+	shader->parse(src2D);
+	shape = context->createMesh();
+	shape->parse(obj);
+	shader->setUniform("u_Projection", perspective(radians(45.0f), 1.0f, 0.1f, 100.0f));
+	shader->setMesh(shape);
 }

@@ -9,21 +9,15 @@ add_library(pastaengine
  src/pastaengine/pasta.cpp
  src/pastaengine/Core.cpp
  src/pastaengine/Component.cpp
- src/pastaengine/Keyboard.cpp
- src/pastaengine/Environment.cpp
  src/pastaengine/Entity.cpp
- src/pastaengine/Screen.cpp
- src/pastaengine/TriangleRenderer.cpp
  src/pastaengine/3dRenderer.cpp
+ src/pastaengine/2dRenderer.cpp
  src/pastaengine/Core.h
  src/pastaengine/pasta.h
  src/pastaengine/Component.h
- src/pastaengine/Keyboard.h
- src/pastaengine/Environment.h
  src/pastaengine/Entity.h
- src/pastaengine/Screen.h
- src/pastaengine/TriangleRenderer.h
  src/pastaengine/3dRenderer.h
+ src/pastaengine/2dRenderer.h
  src/pastaengine/stb_image.h)
 
 add_library(rend
@@ -46,9 +40,7 @@ endif()
 target_link_libraries(pastaengine rend SDL2)
 
 add_executable(sandbox
- src/sandbox/main.cpp
- src/sandbox/tempComponent.h
- src/sandbox/tempComponent.cpp)
+ src/sandbox/main.cpp)
 
 target_link_libraries(sandbox
  pastaengine)
